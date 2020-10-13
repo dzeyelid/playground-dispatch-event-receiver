@@ -25,4 +25,4 @@ jobs:
 
       - name: Show parameters
         run: |
-          echo ${{ github.event }} | jq .
+          echo ${{ toJson(github.event) }} | jq .
