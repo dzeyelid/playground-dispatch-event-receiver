@@ -34,8 +34,14 @@ jobs:
         id: release_tag
         with:
           script: |
-            const words = github.event.client_payload.origin_ref.split('/')
-            return words[2]
+            const { client_payload } = github.event
+            return client_payload
+
+#            const words = client_payload.origin_ref.split('/')
+#            return words[2]
+
+      - name: Show returned value
+        run: echo ${{ steps.release_tag.outputs }}
 
       - name: schema url
         env:
