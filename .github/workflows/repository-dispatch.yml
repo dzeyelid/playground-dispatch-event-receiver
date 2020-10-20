@@ -36,10 +36,11 @@ jobs:
           CLIENT_PAYLOAD: ${{ toJson(github.event.client_payload) }}
         with:
           script: |
-            const { origin_ref } = JSON.parse(process.env.CLIENT_PAYLOAD)
+            const { origin_ref } = context.event.client_payload
             const words = origin_ref.split('/')
             return words[2]
 
+#            const { origin_ref } = JSON.parse(process.env.CLIENT_PAYLOAD)
 #            const words = JSON.parse(client_payload).origin_ref.split('/')
 #            return words[2]
 
@@ -52,4 +53,4 @@ jobs:
         env:
 #           key: https://github.com/freee/freee-api-schema/blob/v0.0.14/v2020_06_15/open-api-3/api-schema.yml
           SCHEMA_URL: https://github.com/freee/freee-api-schema/blob/${{ steps.release_tag.outputs.result }}/v2020_06_15/open-api-3/api-schema.yml
-        run: env "$SCHEMA_URL"
+        run: echo "$SCHEMA_URL"
