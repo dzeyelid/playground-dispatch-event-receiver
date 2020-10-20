@@ -7,8 +7,8 @@ name: fire workflow_dispatch
 on:
   workflow_dispatch:
     inputs:
-      release_tag:
-        description: Release tag
+      origin_ref:
+        description: Origin's ref
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
