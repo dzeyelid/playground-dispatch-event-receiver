@@ -44,7 +44,7 @@ jobs:
 
       - name: Show returned value
         env:
-          RELEASE_TAG_CONTEXT: ${{ steps.release_tag.outputs }}
+          RELEASE_TAG_CONTEXT: ${{ toJson(steps.release_tag.outputs) }}
         run: echo "$RELEASE_TAG_CONTEXT"
 
       - name: schema url
