@@ -34,8 +34,10 @@ jobs:
         id: release_tag
         with:
           script: |
-            const { client_payload } = github.event
-            return client_payload
+            return github.event
+
+#            const { client_payload } = github.event
+#            return client_payload
 
 #            const words = client_payload.origin_ref.split('/')
 #            return words[2]
