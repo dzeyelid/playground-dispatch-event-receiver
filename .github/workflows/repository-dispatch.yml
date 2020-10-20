@@ -36,9 +36,11 @@ jobs:
           CLIENT_PAYLOAD: ${{ toJson(github.event.client_payload) }}
         with:
           script: |
-            const { origin_ref } = context.event.client_payload
-            const words = origin_ref.split('/')
-            return words[2]
+            return context
+
+#            const { origin_ref } = context.event.client_payload
+#            const words = origin_ref.split('/')
+#            return words[2]
 
 #            const { origin_ref } = JSON.parse(process.env.CLIENT_PAYLOAD)
 #            const words = JSON.parse(client_payload).origin_ref.split('/')
