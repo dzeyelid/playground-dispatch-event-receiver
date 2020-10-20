@@ -46,6 +46,5 @@ jobs:
 
       - name: schema url
         env:
-#           key: https://github.com/freee/freee-api-schema/blob/v0.0.14/v2020_06_15/open-api-3/api-schema.yml
-          SCHEMA_URL: https://github.com/freee/freee-api-schema/blob/${{ steps.release_tag.outputs.result }}/v2020_06_15/open-api-3/api-schema.yml
+          SCHEMA_URL: https://raw.githubusercontent.com/freee/freee-api-schema/${{ steps.release_tag.outputs.result }}/v2020_06_15/open-api-3/api-schema.yml
         run: echo "$SCHEMA_URL"
