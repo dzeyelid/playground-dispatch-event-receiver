@@ -30,11 +30,11 @@ jobs:
           echo "${{ toJson(github.event.client_payload) }}"
 
       - uses: actions/github-script@v2
-        if: ${{ contains(fromJson(github.event.client_payload).origin_ref, 'refs/tags/') }}
+        if: ${{ contains(github.event.client_payload.origin_ref, 'refs/tags/') }}
         id: release_tag
         with:
           script: |
-            const words = fromJson(github.event.client_payload).origin_ref.split('/')
+            const words = github.event.client_payload.origin_ref.split('/')
             return words[2]
 
       - name: schema url
