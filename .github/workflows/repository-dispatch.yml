@@ -43,7 +43,9 @@ jobs:
 #            return words[2]
 
       - name: Show returned value
-        run: echo ${{ steps.release_tag.outputs }}
+        env:
+          RELEASE_TAG_CONTEXT: ${{ steps.release_tag.outputs }}
+        run: echo "$RELEASE_TAG_CONTEXT"
 
       - name: schema url
         env:
