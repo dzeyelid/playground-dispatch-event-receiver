@@ -33,6 +33,7 @@ jobs:
         if: ${{ contains(github.event.client_payload.origin_ref, 'refs/tags/') }}
         id: release_tag
         with:
+          result-encoding: string
           script: |
             const { origin_ref } = context.payload.client_payload
             const words = origin_ref.split('/')
