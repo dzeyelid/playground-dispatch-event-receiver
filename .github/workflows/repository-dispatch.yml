@@ -18,7 +18,7 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - name: Check client_payload
-        if: ! ${{ github.event.client_payload.origin_ref }}
+        if: ${{ ! github.event.client_payload.origin_ref }}
         run: exit 1
 
       - uses: actions/github-script@v2
