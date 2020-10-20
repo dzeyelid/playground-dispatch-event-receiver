@@ -37,7 +37,7 @@ jobs:
         with:
           script: |
             const { client_payload } = JSON.parse(process.env.CLIENT_PAYLOAD)
-            return client_payload
+            return "test"
 
 #            const words = JSON.parse(client_payload).origin_ref.split('/')
 #            return words[2]
