@@ -6,7 +6,8 @@ name: fire repository_dispatch
 # events but only for the main branch
 on:
   repository_dispatch:
-
+    types: [generate-sdk]
+    
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
@@ -17,7 +18,10 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
+      - name: schema url
+        env:
+          SCHEMA_URL: https://github.com/freee/freee-api-schema/blob/${{ github.event.client_payload.origin_ref }}/v2020_06_15/open-api-3/api-schema.yml
+        run: env "$SCHEMA_URL"
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
