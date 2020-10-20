@@ -21,6 +21,14 @@ jobs:
         if: ${{ ! github.event.client_payload.origin_ref }}
         run: exit 1
 
+      - name: Show parameters
+        run: |
+          echo "${{ toJson(github.event) }}"
+    
+      - name: Show parameters (client_payload)
+        run: |
+          echo "${{ toJson(github.event.client_payload) }}"
+
       - uses: actions/github-script@v2
         if: contains(github.event.client_payload.origin_ref, 'refs/tags/')
         id: release_tag
@@ -34,11 +42,3 @@ jobs:
 #           key: https://github.com/freee/freee-api-schema/blob/v0.0.14/v2020_06_15/open-api-3/api-schema.yml
           SCHEMA_URL: https://github.com/freee/freee-api-schema/blob/${{ steps.release_tag.outputs }}/v2020_06_15/open-api-3/api-schema.yml
         run: env "$SCHEMA_URL"
-
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-
-      - name: Show parameters
-        run: |
-          echo "${{ toJson(github.event) }}"
