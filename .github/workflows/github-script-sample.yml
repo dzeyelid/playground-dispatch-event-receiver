@@ -15,6 +15,18 @@ jobs:
         
       - name: Return context
         uses: actions/github-script@v2
+        id: return_github_context
+        with:
+          script: |
+            return github
+
+      - name: Show steps.return_github_context
+        env:
+          RETURN_GITHUB_CONTEXT: ${{ toJson(steps.return_github_context.outputs) }}
+        run: echo "$RETURN_GITHUB_CONTEXT"
+
+      - name: Return context
+        uses: actions/github-script@v2
         id: return_context
         with:
           script: |
@@ -49,3 +61,18 @@ jobs:
         env:
           RETURN_VALUE_AS_STRING: ${{ toJson(steps.return_value_as_string.outputs.result) }}
         run: echo "$RETURN_VALUE_AS_STRING"
+
+      - name: parse ref
+        uses: actions/github-script@v2
+        id: parse_ref
+        with:
+          result-encoding: string
+          script: |
+            const { ref } = github
+            const words = ref.split('/')
+            return words[2]
+
+      - name: Show steps.parse_ref
+        env:
+          PARSE_REF: ${{ toJson(steps.parse_ref.outputs.result) }}
+        run: echo "$PARSE_REF"
