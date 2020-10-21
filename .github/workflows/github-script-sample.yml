@@ -13,7 +13,8 @@ jobs:
           GITHUB_CONTEXT: ${{ github }}
         run: echo "$GITHUB_CONTEXT"
         
-      - uses: actions/github-script@v2
+      - name: Return context
+        uses: actions/github-script@v2
         id: return_context
         with:
           script: |
@@ -25,6 +26,7 @@ jobs:
         run: echo "$RETURN_CONTEXT"
 
       - name: Return value as object
+        uses: actions/github-script@v2
         id: return_value_as_object
         with:
           script: |
@@ -36,6 +38,7 @@ jobs:
         run: echo "$RETURN_VALUE_AS_OBJECT"
 
       - name: Return value as string
+        uses: actions/github-script@v2
         id: return_value_as_string
         with:
           result-encoding: string
