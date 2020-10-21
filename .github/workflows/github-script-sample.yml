@@ -15,15 +15,15 @@ jobs:
         
       - name: Return context
         uses: actions/github-script@v2
-        id: return_github_context
+        id: return_github_issues
         with:
           script: |
-            return github
+            return github.issues()
 
-      - name: Show steps.return_github_context
+      - name: Show steps.return_github_issues
         env:
-          RETURN_GITHUB_CONTEXT: ${{ toJson(steps.return_github_context.outputs) }}
-        run: echo "$RETURN_GITHUB_CONTEXT"
+          RETURN_GITHUB_ISSUES: ${{ toJson(steps.return_github_issues.outputs) }}
+        run: echo "$RETURN_GITHUB_ISSUES"
 
       - name: Return context
         uses: actions/github-script@v2
@@ -68,7 +68,7 @@ jobs:
         with:
           result-encoding: string
           script: |
-            const { ref } = github
+            const { ref } = context
             const words = ref.split('/')
             return words[2]
 
