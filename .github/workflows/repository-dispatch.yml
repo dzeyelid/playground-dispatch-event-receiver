@@ -50,6 +50,4 @@ jobs:
         run: echo "$SCHEMA_URL"
 
       - name: Show url again
-        env:
-          SCHEMA_URL_AGAIN: ${{ env.SCHEMA_URL }}
-        run: echo "$SCHEMA_URL_AGAIN"
+        run: echo "${{ steps.release_tag.outputs.result }}"
