@@ -1,0 +1,48 @@
+name: GitHub Script action sample
+
+on:
+  push:
+
+jobs:
+  sample:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Show github context
+        env:
+          GITHUB_CONTEXT: ${{ github }}
+        run: echo "$GITHUB_CONTEXT"
+        
+      - uses: actions/github-script@v2
+        id: return_context
+        with:
+          script: |
+            return context
+
+      - name: Show steps.return_context
+        env:
+          RETURN_CONTEXT: ${{ toJson(steps.return_context.outputs) }}
+        run: echo "$RETURN_CONTEXT"
+
+      - name: Return value as object
+        id: return_value_as_object
+        with:
+          script: |
+            return "string"
+
+      - name: Show steps.return_value_as_object
+        env:
+          RETURN_VALUE_AS_OBJECT: ${{ toJson(steps.return_value_as_object.outputs.result) }}
+        run: echo "$RETURN_VALUE_AS_OBJECT"
+
+      - name: Return value as string
+        id: return_value_as_string
+        with:
+          result-encoding: string
+          script: |
+            return "string"
+
+      - name: Show steps.return_value_as_string
+        env:
+          RETURN_VALUE_AS_STRING: ${{ toJson(steps.return_value_as_string.outputs.result) }}
+        run: echo "$RETURN_VALUE_AS_STRING"
