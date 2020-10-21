@@ -17,8 +17,12 @@ jobs:
         uses: actions/github-script@v2
         id: return_github_issues
         with:
+#           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            return github.issues.list({filter: 'all'})
+            return github.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo
+            })
 
       - name: Show steps.return_github_issues
         env:
