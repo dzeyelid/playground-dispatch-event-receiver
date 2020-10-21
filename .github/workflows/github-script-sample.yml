@@ -18,7 +18,7 @@ jobs:
         id: return_github_issues
         with:
           script: |
-            return github.issues()
+            return github.issues.list()
 
       - name: Show steps.return_github_issues
         env:
